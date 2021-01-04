@@ -6,7 +6,7 @@
         <!-- 1°first Card -->
         <div class="card">
           <div class="card-header text-white bg-secondary">
-            Personajes Personajes
+            Personajes
             <v-tooltip top>
               <template v-slot:activator="{ on }">
                 <span
@@ -16,7 +16,7 @@
                   <i class="fa fa-user text-white"></i>
                 </span>
               </template>
-              <span>Character Characters</span>
+              <span>Character</span>
             </v-tooltip>
           </div>
           <div v-if="loadTransition" class="alert bluesky-line m-0 mb-0"></div>

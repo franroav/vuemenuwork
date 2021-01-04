@@ -7,7 +7,7 @@
         <!-- 1°first Card -->
         <div class="card">
           <div class="card-header text-white bg-secondary">
-            Personajes Favoritos
+            Usuarios
             <v-tooltip top>
               <template v-slot:activator="{ on }">
                 <span
@@ -17,7 +17,7 @@
                   <i class="fa fa-user text-white"></i>
                 </span>
               </template>
-              <span>Favorite users</span>
+              <span>users</span>
             </v-tooltip>
           </div>
           <div v-if="loadTransition" class="alert bluesky-line m-0 mb-0"></div>
