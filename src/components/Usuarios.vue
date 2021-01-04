@@ -119,16 +119,6 @@
               <template v-slot:item.actions="{ item }">
                 <v-tooltip bottom>
                   <template v-slot:activator="{ on }">
-                    <router-link :to="`/inventario/productos/${item.id}`">
-                      <v-icon v-on="on" small color="#93a2dd" class="mr-2"
-                        >mdi-eye</v-icon
-                      >
-                    </router-link>
-                  </template>
-                  <span>Ver Usuario {{ item.id }}</span>
-                </v-tooltip>
-                <v-tooltip bottom>
-                  <template v-slot:activator="{ on }">
                     <a
                       v-on="on"
                       class="btn btn-xs btn-danger"
