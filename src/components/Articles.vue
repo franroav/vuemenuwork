@@ -8,7 +8,7 @@
       </div>
       <div class="row mt-5">
         <div class="col-md-12 article-col-cards animated bounceInRight">
-          <div :class="visibility">
+          <div :class="records">
             <!--CARD ONE-->
             <div class="col-md-4">
               <div class="card text-center animate-cards animated fadeIn">
@@ -106,7 +106,7 @@ export default {
     locations: [],
     characters: [],
     items: [],
-    visibility: "row hide",
+    records: "row",
   }),
   mounted() {
     this.title = "articulos";
@@ -155,12 +155,6 @@ export default {
     }
   },
   created() {},
-  methods: {
-    redirectUrl(url) {
-      //window.location.href = url;
-      this.$router.push(url);
-    },
-  },
 };
 </script>
 
