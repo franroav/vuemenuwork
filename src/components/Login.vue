@@ -229,7 +229,7 @@ export default {
         //const { username, password } = datos;
         console.log(datos);
         axios
-          .post("http://localhost:3000/auth/login", datos)
+          .post(process.env.VUE_APP_API_URL + "auth/login", datos)
           .then((response) => {
             if (response) {
               //console.log(response.data);
@@ -287,7 +287,7 @@ export default {
         const next = this.number;
 
         axios
-          .get(`http://localhost:3000/character/${next}`)
+          .get(process.env.VUE_APP_API_URL`character/${next}`)
           .then((response) => {
             console.log(response);
             this.image = response.data.image;

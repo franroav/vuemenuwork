@@ -450,7 +450,7 @@ export default {
           );
           if (confirmacion) {
             axios
-              .post("http://localhost:3000/character", datos, {
+              .post(process.env.VUE_APP_API_URL + "character", datos, {
                 headers: headers,
               })
               .then((response) => {
@@ -482,14 +482,18 @@ export default {
         var vm = this;
         const next = this.number;
 
-        axios.get(`http://localhost:3000/character`).then((response) => {
-          this.loading = false;
-          vm.pageCount = Math.ceil(response.data.length / 10);
-          response.data.map((character) => {
-            vm.CharacterList.unshift(character);
-            //console.log(character);
+        console.log(process.env.VUE_APP_API_URL);
+
+        axios
+          .get(`${process.env.VUE_APP_API_URL}character`)
+          .then((response) => {
+            this.loading = false;
+            vm.pageCount = Math.ceil(response.data.length / 10);
+            response.data.map((character) => {
+              vm.CharacterList.unshift(character);
+              //console.log(character);
+            });
           });
-        });
       } catch (error) {
         console.log(error);
       }

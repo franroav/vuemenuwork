@@ -12,7 +12,9 @@ import "./assets/app.css";
 
 import axios from "axios";
 import VueAxios from "vue-axios";
+import dotenv from "dotenv";
 
+dotenv.config();
 Vue.use(VueAxios, axios);
 
 Vue.config.productionTip = false;

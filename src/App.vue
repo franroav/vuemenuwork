@@ -10,19 +10,11 @@
 <script>
 import { mapState } from "vuex";
 
-import Header from "@/components/Header.vue";
-import Articles from "@/components/Articles.vue";
-import Contact from "@/components/Contact.vue";
 import Navbar from "@/components/Navbar.vue";
-import Registro from "@/components/Registro.vue";
 
 export default {
   name: "App",
   components: {
-    Header,
-    Articles,
-    Contact,
-    Registro,
     Navbar,
   },
   data: () => ({

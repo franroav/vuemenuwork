@@ -65,36 +65,38 @@
                         <v-card-text>
                           <v-container>
                             <v-row>
-                              <div class="card col-md-12">
-                                <ul class="list-group mb-3 mt-2">
-                                  <h4
-                                    class="d-flex justify-content-between align-items-center mb-3"
-                                  >
-                                    <span class="text-muted">{{
-                                      editedItem.username
-                                    }}</span>
-                                    <span
-                                      class="badge badge-secondary badge-pill"
-                                      >ID: {{ editedItem.id }}</span
+                              <div class="container">
+                                <div class="card col-md-12">
+                                  <ul class="list-group mb-3 mt-2">
+                                    <h6
+                                      class="d-flex justify-content-between align-items-center mb-3"
                                     >
-                                  </h4>
-                                  <li
-                                    class="list-group-item d-flex justify-content-between lh-condensed"
-                                  >
-                                    <div>
-                                      <h6 class="my-0">
-                                        {{ editedItem.role }}
-                                      </h6>
-                                    </div>
-                                    <div>
+                                      <span class="text-muted">{{
+                                        editedItem.username
+                                      }}</span>
                                       <span
-                                        class="badge badge-secondary badge-pill float-right"
+                                        class="badge badge-secondary badge-pill"
+                                        >ID: {{ editedItem.id }}</span
                                       >
-                                        <i class="fa fa-user"></i>
-                                      </span>
-                                    </div>
-                                  </li>
-                                </ul>
+                                    </h6>
+                                    <li
+                                      class="list-group-item d-flex justify-content-between lh-condensed"
+                                    >
+                                      <div>
+                                        <h6 class="my-0">
+                                          {{ editedItem.role }}
+                                        </h6>
+                                      </div>
+                                      <div>
+                                        <span
+                                          class="badge badge-secondary badge-pill float-right"
+                                        >
+                                          <i class="fa fa-user"></i>
+                                        </span>
+                                      </div>
+                                    </li>
+                                  </ul>
+                                </div>
                               </div>
                             </v-row>
                           </v-container>
@@ -359,7 +361,7 @@ export default {
 
         if (this.$refs.form.validate()) {
           axios
-            .post("http://localhost:3000/user", datos, {
+            .post(process.env.VUE_APP_API_URL + "user", datos, {
               headers: headers,
             })
             .then((response) => {
@@ -387,7 +389,7 @@ export default {
         var vm = this;
         const next = this.number;
 
-        axios.get(`http://localhost:3000/users`).then((response) => {
+        axios.get(process.env.VUE_APP_API_URL + `users`).then((response) => {
           console.log(response.data);
           this.loading = false;
           vm.pageCount = Math.ceil(response.data.length / 10);

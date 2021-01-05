@@ -29,27 +29,10 @@ export default {
     data: {},
   }),
   mounted() {},
-  created() {
-    this.GetArticleList();
-  },
+  created() {},
   methods: {
     redirectUrl(url) {
       this.$router.push(url);
-    },
-    GetArticleList() {
-      try {
-        var vm = this;
-        let datos = axios
-          .get(`https://5eed24da4cbc340016330f0d.mockapi.io/api/articles`)
-          .then((articles) => {
-            vm.articleList(articles.data);
-          });
-      } catch (error) {
-        console.log(error);
-      }
-    },
-    articleList(articles) {
-      //console.log(articles);
     },
   },
 };

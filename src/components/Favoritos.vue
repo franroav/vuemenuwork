@@ -140,43 +140,6 @@
               <template v-slot:item.image="{ item }">
                 <img :src="item.image" class="img-responsive img-thumbnail" />
               </template>
-              <template v-slot:item.actions="{ item }">
-                <v-tooltip bottom>
-                  <template v-slot:activator="{ on }">
-                    <router-link :to="`/inventario/favoritos/${item.id}`">
-                      <v-icon v-on="on" small color="#93a2dd" class="mr-2"
-                        >mdi-eye</v-icon
-                      >
-                    </router-link>
-                  </template>
-                  <span>Ver favorito {{ item.id }}</span>
-                </v-tooltip>
-                <v-tooltip bottom>
-                  <template v-slot:activator="{ on }">
-                    <a
-                      v-on="on"
-                      class="btn btn-xs btn-danger"
-                      @click="editItem(item)"
-                      ><i class="fa fa-eye text-white"></i
-                    ></a>
-                  </template>
-                  <span
-                    >Ver detalles {{ item.name }} {{ " | " + item.id }}</span
-                  >
-                </v-tooltip>
-                <v-tooltip bottom>
-                  <template v-slot:activator="{ on }">
-                    <v-icon
-                      v-on="on"
-                      color="#93a2dd"
-                      small
-                      @click="deleteItem(item)"
-                      >mdi-delete</v-icon
-                    >
-                  </template>
-                  <span>Eliminar favorito {{ item.id }}</span>
-                </v-tooltip>
-              </template>
               <template v-slot:no-data>
                 <v-btn
                   color="#87CEFA"
@@ -340,11 +303,11 @@ export default {
       );
       if (confirmacion) {
         vm.axios({
-          url: "inventory/products/" + deleteFavorite.id,
+          url: "xxxxxxxxxxxxxxxxxxxx" + deleteFavorite.id,
           method: "DELETE",
         })
           .then((response) => {
-            vm.fetchFavorites();
+            /* vm.fetchFavorites();
 
             vm.$bvToast.toast(
               `El favorito: ${deleteFavorite.name} ha sido eliminado, el ${vm.dateMsg} exitosamente!`,
@@ -354,7 +317,7 @@ export default {
                 solid: true,
                 toaster: "b-toaster-bottom-center",
               }
-            );
+            );*/
           })
           .catch((error) => {
             console.log(error);
@@ -376,16 +339,18 @@ export default {
         var vm = this;
         const next = this.number;
 
-        axios.get(`http://localhost:3000/favorites`).then((response) => {
-          this.loading = false;
-          vm.pageCount = Math.ceil(response.data.length / 10);
+        axios
+          .get(process.env.VUE_APP_API_URL + `favorites`)
+          .then((response) => {
+            this.loading = false;
+            vm.pageCount = Math.ceil(response.data.length / 10);
 
-          response.data.map((character) => {
-            if (character.user_id === parseInt(this.user_id)) {
-              vm.favoriteList.unshift(character);
-            }
+            response.data.map((character) => {
+              if (character.user_id === parseInt(this.user_id)) {
+                vm.favoriteList.unshift(character);
+              }
+            });
           });
-        });
       } catch (error) {
         console.log(error);
       }

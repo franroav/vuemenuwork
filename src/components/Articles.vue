@@ -106,10 +106,6 @@ export default {
     locations: [],
     characters: [],
     items: [],
-    arrArticle: [],
-    arrProductos: [],
-    arrRecetas: [],
-    arrConsejos: [],
     visibility: "row hide",
   }),
   mounted() {
@@ -157,111 +153,12 @@ export default {
     } catch (error) {
       console.log(error);
     }
-
-    ////
-    try {
-      var vm = this;
-      let datos = axios
-        .get(`https://5eed24da4cbc340016330f0d.mockapi.io/api/articles`)
-        .then((articles) => {
-          vm.articleList(articles.data);
-        });
-      //console.log(datos);
-    } catch (error) {
-      console.log(error);
-    }
   },
   created() {},
   methods: {
     redirectUrl(url) {
       //window.location.href = url;
       this.$router.push(url);
-    },
-    articleList(articles) {
-      this.articleStorage(articles);
-    },
-    getProductList(Productos) {
-      try {
-        var vm = this;
-        this.title = "productos";
-        let datos = axios
-          .get(
-            `https://5eed24da4cbc340016330f0d.mockapi.io/api/articles?filter=${Productos}`
-          )
-          .then((productos) => {
-            vm.productList(productos.data);
-          });
-      } catch (error) {
-        console.log(error);
-      }
-    },
-    productList(producto) {
-      this.articleStorage(producto);
-    },
-    getRecipeList() {
-      try {
-        var vm = this;
-        this.title = "recetas";
-        let datos = axios
-          .get(
-            `https://5eed24da4cbc340016330f0d.mockapi.io/api/articles?filter=Recetas`
-          )
-          .then((recetas) => {
-            vm.recipeList(recetas.data);
-          });
-      } catch (error) {
-        console.log(error);
-      }
-    },
-    recipeList(recipe) {
-      this.articleStorage(recipe);
-    },
-    getAdviseList(advise) {
-      try {
-        var vm = this;
-        this.title = "consejos";
-        let datos = axios
-          .get(
-            `https://5eed24da4cbc340016330f0d.mockapi.io/api/articles?filter=${advise}`
-          )
-          .then((consejo) => {
-            vm.adviseList(consejo.data);
-          });
-      } catch (error) {
-        console.log(error);
-      }
-    },
-    adviseList(consejos) {
-      this.articleStorage(consejos);
-    },
-    articleStorage(data) {
-      let arrData = [];
-
-      for (let i = 0; i < data.length; i++) {
-        if (i < 6) {
-          arrData.push(data[i]);
-        }
-      }
-
-      if (localStorage.getItem("article") !== null && data.lenght !== 0) {
-        this.arrArticle = [];
-        localStorage.removeItem("article");
-
-        localStorage.setItem("article", JSON.stringify(arrData));
-
-        let articleStorage = JSON.parse(localStorage.getItem("article"));
-
-        this.arrArticle = articleStorage;
-        this.visibility = "row mt-2";
-      } else if (
-        localStorage.getItem("article") === null &&
-        data.lenght !== 0
-      ) {
-        localStorage.setItem("article", JSON.stringify(arrData));
-
-        this.arrArticle = arrData;
-        this.visibility = "row";
-      }
     },
   },
 };
